@@ -1,6 +1,7 @@
 package com.skilldistillery.jets;
 
-public interface CharterPackage {
+public interface Charters
+{
 
 	public void upgradeTrim();
 }

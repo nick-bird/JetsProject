@@ -1,6 +1,6 @@
 package com.skilldistillery.jets;
 
-public class CharterJet extends Jet implements CharterPackage {
+public class CharterJet extends Jet implements Charters {
 
 	private boolean trimIsUpgraded = false;
 	private String type = "Charter";

@@ -6,6 +6,7 @@ public abstract class Jet {
 	private double speed;
 	private int range;
 	private long price;
+	private String type = null;
 	
 	public Jet(String model, double speed, int range, long price) {
 		super();
@@ -21,6 +22,10 @@ public abstract class Jet {
 
 	public String getModel() {
 		return model;
+	}
+
+	public String getType() {
+		return type;
 	}
 
 	public void setModel(String model) {
