@@ -2,93 +2,62 @@ package com.skilldistillery.jets;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 
 public class Airfield {
-	Jet newJet;
-	private String fileName = "jets.txt";
-	//ArrayList<Jet> jets = readJets(fileName); 
 
-	
 	public ArrayList<Jet> readJets() {
+		String fileName = "jets.txt";
+		Jet newJet;
+
 		BufferedReader bufIn = null;
-		//Jet newJet;
 		ArrayList<Jet> jets = new ArrayList<Jet>();
-		String s[];
+		String[] s;
 		try {
 			bufIn = new BufferedReader(new FileReader(fileName));
 			String line;
 			while ((line = bufIn.readLine()) != null) {
 				s = line.split(",");
-				newJet = createAircraft(s);
+				newJet = createJet(s);
+
 				jets.add(newJet);
-				
 			}
-			System.out.println(jets);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			System.err.println(e);
 		} finally {
 			if (bufIn != null) {
 				try {
 					bufIn.close();
-				} catch (IOException e) {
+				} catch (Exception e) {
 					System.err.println(e);
 				}
 			}
 		}
 		return jets;
 	}
-	
-	public Jet createAircraft(String[] s) {
-	if(s[0].equals("Cargo")) {
-		newJet = new CargoPlane();
-		newJet.setModel(s[1]);
-		newJet.setSpeed(Double.parseDouble(s[2]));
-		newJet.setRange(Integer.parseInt(s[3]));
-		newJet.setPrice(Long.parseLong(s[4]));
+
+	public Jet createJet(String[] s) {
+		Jet newJet;
+		if (s[0].equals("Cargo")) {
+			newJet = new CargoPlane();
+			newJet.setModel(s[1]);
+			newJet.setSpeed(Double.parseDouble(s[2]));
+			newJet.setRange(Integer.parseInt(s[3]));
+			newJet.setPrice(Long.parseLong(s[4]));
+		} else if (s[0].equals("Charter")) {
+			newJet = new CharterJet();
+			newJet.setModel(s[1]);
+			newJet.setSpeed(Double.parseDouble(s[2]));
+			newJet.setRange(Integer.parseInt(s[3]));
+			newJet.setPrice(Long.parseLong(s[4]));
+		} else {
+			newJet = new JetImpl();
+			newJet.setModel(s[1]);
+			newJet.setSpeed(Double.parseDouble(s[2]));
+			newJet.setRange(Integer.parseInt(s[3]));
+			newJet.setPrice(Long.parseLong(s[4]));
+		}
+
+		return newJet;
 	}
-	
-	if(s[0].equals("Charter")) {
-		newJet = new CharterJet();
-		newJet.setModel(s[1]);
-		newJet.setSpeed(Double.parseDouble(s[2]));
-		newJet.setRange(Integer.parseInt(s[3]));
-		newJet.setPrice(Long.parseLong(s[4]));
-		
-	}
-	else {
-		
-	newJet = new JetImpl();
-		newJet.setModel(s[0]);
-		newJet.setSpeed(Double.parseDouble(s[1]));
-		newJet.setRange(Integer.parseInt(s[2]));
-		newJet.setPrice(Long.parseLong(s[3]));
-	
-	}
-	return newJet;
-	
-//	public Collection<Jet> removeJet(int i, ArrayList<Jet> jets){
-//		if (i>0) {
-//		i--;
-//		jets.remove(i);}
-//		
-//		
-//		return jets;
-//		
-//	}
-	}
-	}
-//	public Jet createJet1(String[] s) {
-//	
-//			newJet = new CargoPlane();
-//			newJet.setModel(s[1]);
-//			newJet.setSpeed(Double.parseDouble(s[2]));
-//			newJet.setRange(Integer.parseInt(s[3]));
-//			newJet.setPrice(Long.parseLong(s[4]));
-//			return newJet;
-//}
-//}
+}

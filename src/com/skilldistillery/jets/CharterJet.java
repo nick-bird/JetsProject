@@ -17,9 +17,9 @@ public class CharterJet extends Jet implements Charters {
 
 	@Override
 	public void upgradeTrim() {
-		if(!trimIsUpgraded) {
-		this.trimIsUpgraded = true;
-		System.out.println("Upgrading " + this.getModel() + " to luxury trim...");
+		if (!trimIsUpgraded) {
+			this.trimIsUpgraded = true;
+			System.out.println("Upgrading " + this.getModel() + " to luxury trim...");
 		}
 	}
 

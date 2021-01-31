@@ -7,7 +7,7 @@ public abstract class Jet {
 	private Integer range;
 	private Long price;
 	private String type = null;
-	
+
 	public Jet(String model, double speed, int range, long price) {
 		super();
 		this.model = model;
@@ -37,8 +37,7 @@ public abstract class Jet {
 	}
 
 	public void setSpeed(double speed) {
-		this.
-		speed = speed;
+		this.speed = speed;
 	}
 
 	public int getRange() {
@@ -59,10 +58,12 @@ public abstract class Jet {
 
 	public void fly() {
 		double flyTime;
-		flyTime = this.range  / this.speed;
+		flyTime = this.range / this.speed;
 		System.out.println(this);
 		System.out.printf("The " + this.model + " can fly for %.2f hours before running out of fuel\n", flyTime);
+		System.out.println();
 	}
+
 	public void getSpeedInMach() {
 		double machSpeed = this.speed / 767;
 		System.out.printf("The " + this.model + " has a speed of Mach %.2f\n", machSpeed);
@@ -72,15 +73,5 @@ public abstract class Jet {
 	public String toString() {
 		return "Model: " + model + ", speed: " + speed + ", range: " + range + ", price: " + price;
 	}
-	
-}
 
-//constructor, and no arg,
-// fly() + tostring
-// some calculation with speed and range
-//setters/getters 
-// get speed in mach
-// range 1500 miles 
-// speed 400-600 
-// mach speed  = divide speed by 767
-// cargo (load cargo)/ charter (upgrade trim); 
+}

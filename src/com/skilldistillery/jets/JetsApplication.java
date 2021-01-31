@@ -6,19 +6,18 @@ import java.util.Scanner;
 
 public class JetsApplication {
 	Collection<Jet> jets;
- Scanner scanner = new Scanner(System.in);
+	Scanner scanner = new Scanner(System.in);
+
 	public static void main(String[] args) {
-		Airfield1 af = new Airfield1();
+		Airfield af = new Airfield();
 		ArrayList<Jet> jets = af.readJets();
-		
-		
+
 		boolean keepMenu = true;
 		JetsApplication ja = new JetsApplication();
-		System.out.println(jets);
-		while(keepMenu) {
+		while (keepMenu) {
 			ja.printMenu();
 			int menuSelection = ja.scanner.nextInt();
-			switch(menuSelection) {
+			switch (menuSelection) {
 			case 1:
 				ja.listFleet(jets);
 				break;
@@ -51,9 +50,6 @@ public class JetsApplication {
 			}
 		}
 	}
-		
-		
-	
 
 	public void loadAllCargo(Collection<Jet> jets) {
 		ArrayList<CargoCarrier> cargoCarriers = new ArrayList<CargoCarrier>();
@@ -65,12 +61,14 @@ public class JetsApplication {
 		for (CargoCarrier cc : cargoCarriers) {
 			cc.loadCargo();
 		}
+		System.out.println();
 	}
 
 	public void listFleet(Collection<Jet> jets) {
 		for (Jet jet : jets) {
 			System.out.println(jet);
 		}
+		System.out.println();
 	}
 
 	public void flyAllJets(Collection<Jet> jets) {
@@ -90,6 +88,7 @@ public class JetsApplication {
 		}
 		Jet fastestJet = jets.get(indexCount);
 		System.out.println("The fastest aircraft is:\n" + fastestJet);
+		System.out.println();
 	}
 
 	public void viewJetWithLongestRange(ArrayList<Jet> jets) {
@@ -103,6 +102,7 @@ public class JetsApplication {
 		}
 		Jet longestRangeJet = jets.get(indexCount);
 		System.out.println("The longest range aircraft is:\n" + longestRangeJet);
+		System.out.println();
 	}
 
 	public void upgradeAllCharters(Collection<Jet> jets) {
@@ -116,9 +116,12 @@ public class JetsApplication {
 		for (Charters charter : charters) {
 			charter.upgradeTrim();
 		}
+		System.out.println();
 	}
-	public ArrayList<Jet> addCustomJet(ArrayList<Jet> jets){
-		System.out.println("Please enter number of which type of aircraft to add: \n1. Cargo\n2. Charter\n3. Standard ");
+
+	public ArrayList<Jet> addCustomJet(ArrayList<Jet> jets) {
+		System.out
+				.println("Please enter number of which type of aircraft to add: \n1. Cargo\n2. Charter\n3. Standard ");
 		int menuSelection = scanner.nextInt();
 		scanner.nextLine();
 		System.out.println("Enter the Model: ");
@@ -129,44 +132,45 @@ public class JetsApplication {
 		int range = scanner.nextInt();
 		System.out.println("Enter the Price: ");
 		long price = scanner.nextLong();
-		
-		Jet newJet = null; 
-		switch(menuSelection) {
+
+		Jet newJet = null;
+		switch (menuSelection) {
 		case 1:
-			newJet = new CargoPlane(model,speed,range,price);
+			newJet = new CargoPlane(model, speed, range, price);
 			break;
 		case 2:
-			newJet = new CharterJet(model,speed,range,price);
+			newJet = new CharterJet(model, speed, range, price);
 			break;
 		case 3:
-			newJet = new JetImpl(model,speed,range,price);
+			newJet = new JetImpl(model, speed, range, price);
 			break;
 		default:
 			System.out.println("Invalid selection");
-		break;
+			break;
 		}
 		jets.add(newJet);
-		
+
 		return jets;
 	}
-	public ArrayList<Jet> removeJet(ArrayList<Jet> jets){
+
+	public ArrayList<Jet> removeJet(ArrayList<Jet> jets) {
 		int count = 0;
 		System.out.println("Please type the number of the plane you would like to remove: ");
-	
+
 		for (Jet jet : jets) {
 			count++;
-			System.out.println(count + ". " +  jet);
+			System.out.println(count + ". " + jet);
 		}
 		int menuSelection = scanner.nextInt();
-		jets.remove(menuSelection-1);
+		jets.remove(menuSelection - 1);
 		return jets;
 	}
+
 	public void printMenu() {
-		System.out.println("\nPlease select a number from the following choices:"
+		System.out.println("Please select a number from the following choices:"
 				+ "\n1. List fleet\n2. Fly all jets\n3. View fastest jet"
 				+ "\n4. View jet with longest range\n5. Load all Cargo Planes"
 				+ "\n6. Upgrade all Charter Jets\n7. Add an aircraft to fleet"
-				+ "\n8. Remove a jet from Fleet\n9. Quit "
-				);
+				+ "\n8. Remove a jet from Fleet\n9. Quit ");
 	}
 }
