@@ -3,14 +3,14 @@ package com.skilldistillery.jets;
 public abstract class Jet {
 //model, speed, range, price
 	private String model;
-	private double Speed;
+	private double speed;
 	private int range;
 	private long price;
 	
 	public Jet(String model, double speed, int range, long price) {
 		super();
 		this.model = model;
-		Speed = speed;
+		this.speed = speed;
 		this.range = range;
 		this.price = price;
 	}
@@ -28,11 +28,12 @@ public abstract class Jet {
 	}
 
 	public double getSpeed() {
-		return Speed;
+		return speed;
 	}
 
 	public void setSpeed(double speed) {
-		Speed = speed;
+		this.
+		speed = speed;
 	}
 
 	public int getRange() {
@@ -51,6 +52,20 @@ public abstract class Jet {
 		this.price = price;
 	}
 
+	public void fly() {
+		double flyTime;
+		flyTime = this.range  / this.speed; 
+		System.out.printf("This aircraft can fly for %.2f hours before running out of fuel\n", flyTime);
+	}
+	public void getSpeedInMach() {
+		double machSpeed = this.speed / 767;
+		System.out.printf("This aircraft has a speed of Mach %.2f\n", machSpeed);
+	}
+
+	@Override
+	public String toString() {
+		return "Model: " + model + ", speed: " + speed + ", range: " + range + ", price: " + price;
+	}
 	
 }
 
