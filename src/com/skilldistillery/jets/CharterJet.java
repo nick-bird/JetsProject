@@ -17,9 +17,10 @@ public class CharterJet extends Jet implements Charters {
 
 	@Override
 	public void upgradeTrim() {
+		if(!trimIsUpgraded) {
 		this.trimIsUpgraded = true;
 		System.out.println("Upgrading " + this.getModel() + " to luxury trim...");
-
+		}
 	}
 
 	public String getType() {
@@ -32,7 +33,7 @@ public class CharterJet extends Jet implements Charters {
 
 	@Override
 	public String toString() {
-		return "Type: " + this.getType() + ", model: " + this.getModel() + ", speed: " + this.getSpeed() + ", range: "
-				+ this.getRange() + ", price: " + this.getPrice();
+		return "Type: " + this.getType() + " Model: " + this.getModel() + " Speed: " + this.getSpeed() + " Range: "
+				+ this.getRange() + " Price: " + this.getPrice();
 	}
 }

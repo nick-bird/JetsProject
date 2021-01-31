@@ -11,21 +11,24 @@ import java.util.List;
 public class Airfield {
 	Jet newJet;
 	private String fileName = "jets.txt";
-	ArrayList<Jet> jets = readJets(fileName); 
+	//ArrayList<Jet> jets = readJets(fileName); 
 
 	
-	public ArrayList<Jet> readJets(String fileName) {
+	public ArrayList<Jet> readJets() {
 		BufferedReader bufIn = null;
 		//Jet newJet;
-		//ArrayList<Jet> jets = new ArrayList<Jet>();
+		ArrayList<Jet> jets = new ArrayList<Jet>();
+		String s[];
 		try {
 			bufIn = new BufferedReader(new FileReader(fileName));
 			String line;
 			while ((line = bufIn.readLine()) != null) {
-				String[] s = line.split(",");
-				newJet = createJet(s);
+				s = line.split(",");
+				newJet = createAircraft(s);
 				jets.add(newJet);
+				
 			}
+			System.out.println(jets);
 		} catch (IOException e) {
 			System.err.println(e);
 		} finally {
@@ -40,16 +43,15 @@ public class Airfield {
 		return jets;
 	}
 	
-	public Jet createJet(String[] s) {
-		//Jet newJet;
+	public Jet createAircraft(String[] s) {
 	if(s[0].equals("Cargo")) {
 		newJet = new CargoPlane();
 		newJet.setModel(s[1]);
 		newJet.setSpeed(Double.parseDouble(s[2]));
 		newJet.setRange(Integer.parseInt(s[3]));
 		newJet.setPrice(Long.parseLong(s[4]));
-		
 	}
+	
 	if(s[0].equals("Charter")) {
 		newJet = new CharterJet();
 		newJet.setModel(s[1]);
@@ -59,23 +61,34 @@ public class Airfield {
 		
 	}
 	else {
-		newJet = new JetImpl();
+		
+	newJet = new JetImpl();
 		newJet.setModel(s[0]);
 		newJet.setSpeed(Double.parseDouble(s[1]));
 		newJet.setRange(Integer.parseInt(s[2]));
 		newJet.setPrice(Long.parseLong(s[3]));
+	
 	}
 	return newJet;
-	}
 	
-	public Collection<Jet> removeJet(int i, ArrayList<Jet> jets){
-		if (i>0) {
-		i--;
-		jets.remove(i);}
-		
-		
-		return jets;
-		
+//	public Collection<Jet> removeJet(int i, ArrayList<Jet> jets){
+//		if (i>0) {
+//		i--;
+//		jets.remove(i);}
+//		
+//		
+//		return jets;
+//		
+//	}
 	}
-	
-}
+	}
+//	public Jet createJet1(String[] s) {
+//	
+//			newJet = new CargoPlane();
+//			newJet.setModel(s[1]);
+//			newJet.setSpeed(Double.parseDouble(s[2]));
+//			newJet.setRange(Integer.parseInt(s[3]));
+//			newJet.setPrice(Long.parseLong(s[4]));
+//			return newJet;
+//}
+//}

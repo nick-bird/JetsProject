@@ -17,8 +17,10 @@ public class CargoPlane extends Jet implements CargoCarrier {
 
 	@Override
 	public void loadCargo() {
+		if(!cargoIsLoaded) {
 		this.cargoIsLoaded = true;
 		System.out.println("Loading " + this.getModel() + " with cargo...");
+		}
 	}
 
 	public String getType() {
@@ -31,7 +33,7 @@ public class CargoPlane extends Jet implements CargoCarrier {
 
 	@Override
 	public String toString() {
-		return "Type: " + this.getType() + ", model: " + this.getModel() + ", speed: " + this.getSpeed() + ", range: "
-				+ this.getRange() + ", price: " + this.getPrice();
+		return "Type: " + this.getType() + " Model: " + this.getModel() + " Speed: " + this.getSpeed() + " Range: "
+				+ this.getRange() + " Price: " + this.getPrice();
 	}
 }

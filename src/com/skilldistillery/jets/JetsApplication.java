@@ -6,12 +6,54 @@ import java.util.Scanner;
 
 public class JetsApplication {
 	Collection<Jet> jets;
-Scanner scanner = new Scanner(System.in);
+ Scanner scanner = new Scanner(System.in);
 	public static void main(String[] args) {
-
+		Airfield1 af = new Airfield1();
+		ArrayList<Jet> jets = af.readJets();
 		
 		
+		boolean keepMenu = true;
+		JetsApplication ja = new JetsApplication();
+		System.out.println(jets);
+		while(keepMenu) {
+			ja.printMenu();
+			int menuSelection = ja.scanner.nextInt();
+			switch(menuSelection) {
+			case 1:
+				ja.listFleet(jets);
+				break;
+			case 2:
+				ja.flyAllJets(jets);
+				break;
+			case 3:
+				ja.viewFastestJet(jets);
+				break;
+			case 4:
+				ja.viewJetWithLongestRange(jets);
+				break;
+			case 5:
+				ja.loadAllCargo(jets);
+				break;
+			case 6:
+				ja.upgradeAllCharters(jets);
+				break;
+			case 7:
+				jets = ja.addCustomJet(jets);
+				break;
+			case 8:
+				jets = ja.removeJet(jets);
+				break;
+			case 9:
+				keepMenu = false;
+				break;
+			default:
+				System.out.println("Invalid entry");
+			}
+		}
 	}
+		
+		
+	
 
 	public void loadAllCargo(Collection<Jet> jets) {
 		ArrayList<CargoCarrier> cargoCarriers = new ArrayList<CargoCarrier>();
@@ -47,7 +89,7 @@ Scanner scanner = new Scanner(System.in);
 			}
 		}
 		Jet fastestJet = jets.get(indexCount);
-		System.out.println("The fastest aircraft is: " + fastestJet);
+		System.out.println("The fastest aircraft is:\n" + fastestJet);
 	}
 
 	public void viewJetWithLongestRange(ArrayList<Jet> jets) {
@@ -60,13 +102,13 @@ Scanner scanner = new Scanner(System.in);
 			}
 		}
 		Jet longestRangeJet = jets.get(indexCount);
-		System.out.println("The fastest aircraft is: " + longestRangeJet);
+		System.out.println("The longest range aircraft is:\n" + longestRangeJet);
 	}
 
 	public void upgradeAllCharters(Collection<Jet> jets) {
 		ArrayList<Charters> charters = new ArrayList<Charters>();
 		for (Jet jet : jets) {
-			if (jet.getType().equals("Cargo")) {
+			if (jet.getType().equals("Charter")) {
 				charters.add((Charters) jet);
 			}
 
@@ -75,7 +117,7 @@ Scanner scanner = new Scanner(System.in);
 			charter.upgradeTrim();
 		}
 	}
-	public Collection<Jet> addCustomJet(ArrayList<Jet> jets){
+	public ArrayList<Jet> addCustomJet(ArrayList<Jet> jets){
 		System.out.println("Please enter number of which type of aircraft to add: \n1. Cargo\n2. Charter\n3. Standard ");
 		int menuSelection = scanner.nextInt();
 		scanner.nextLine();
@@ -107,7 +149,7 @@ Scanner scanner = new Scanner(System.in);
 		
 		return jets;
 	}
-	public Collection<Jet> removeJet(ArrayList<Jet> jets){
+	public ArrayList<Jet> removeJet(ArrayList<Jet> jets){
 		int count = 0;
 		System.out.println("Please type the number of the plane you would like to remove: ");
 	
@@ -117,6 +159,14 @@ Scanner scanner = new Scanner(System.in);
 		}
 		int menuSelection = scanner.nextInt();
 		jets.remove(menuSelection-1);
-		return null;
+		return jets;
+	}
+	public void printMenu() {
+		System.out.println("\nPlease select a number from the following choices:"
+				+ "\n1. List fleet\n2. Fly all jets\n3. View fastest jet"
+				+ "\n4. View jet with longest range\n5. Load all Cargo Planes"
+				+ "\n6. Upgrade all Charter Jets\n7. Add an aircraft to fleet"
+				+ "\n8. Remove a jet from Fleet\n9. Quit "
+				);
 	}
 }

@@ -3,9 +3,9 @@ package com.skilldistillery.jets;
 public abstract class Jet {
 //model, speed, range, price
 	private String model;
-	private double speed;
-	private int range;
-	private long price;
+	private Double speed;
+	private Integer range;
+	private Long price;
 	private String type = null;
 	
 	public Jet(String model, double speed, int range, long price) {
@@ -59,12 +59,13 @@ public abstract class Jet {
 
 	public void fly() {
 		double flyTime;
-		flyTime = this.range  / this.speed; 
-		System.out.printf("This aircraft can fly for %.2f hours before running out of fuel\n", flyTime);
+		flyTime = this.range  / this.speed;
+		System.out.println(this);
+		System.out.printf("The " + this.model + " can fly for %.2f hours before running out of fuel\n", flyTime);
 	}
 	public void getSpeedInMach() {
 		double machSpeed = this.speed / 767;
-		System.out.printf("This aircraft has a speed of Mach %.2f\n", machSpeed);
+		System.out.printf("The " + this.model + " has a speed of Mach %.2f\n", machSpeed);
 	}
 
 	@Override
